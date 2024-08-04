@@ -1,0 +1,29 @@
+.wrapper img {
+    width: 40vmax;
+    height: max-content;
+    max-height: max-content;
+    object-fit: cover;
+    object-position: center;
+
+}
+
+
+.wrapper-main img {
+    width: 40vmax;
+    height: max-content;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media screen and (max-width:500px) {
+    .wrapper img {
+        width: 100%;
+        height: max-content;
+
+    }
+
+    .slider-button {
+        padding: 0;
+        margin: 0;
+    }
+}
