@@ -47,6 +47,7 @@ const Home = () => {
   return (
     <div className="w-full relative styleFont">
       <Suspense fallback={<Loader />}>
+        
         <LazyHeroSection />
       </Suspense>
       <About />

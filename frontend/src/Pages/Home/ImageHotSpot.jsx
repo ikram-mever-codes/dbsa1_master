@@ -8,20 +8,19 @@ import { Link } from "react-router-dom";
 
 import { BASE_URL } from "../../Redux/constant";
 
-const AnnotBox = ({ setShowAnnotBox, setAnnotData, annotData }) => {
+const AnnotBox = ({ setShowAnnotBox, annotData }) => {
   return (
     <div className="fixed w-full h-full top-0 left-0 bg-[#0d0b0be9] z-[10000] flex justify-center items-center">
       <button
         className="absolute top-0 right-0 text-[50px] m-[20px]"
         onClick={() => {
           setShowAnnotBox(false);
-          setAnnotData(null);
         }}
       >
         <IoIosClose color="red" />
       </button>
       <div className="relative w-[70vw] h-max flex justify-start items-center flex-col gap-[20px]">
-        {annotData.image !== "" ? (
+        {annotData?.image ? (
           <img
             className="w-max h-max max-h-[70vh] rounded-lg object-cover object-center"
             src={annotData.image}
@@ -33,9 +32,9 @@ const AnnotBox = ({ setShowAnnotBox, setAnnotData, annotData }) => {
           </div>
         )}
         <Link
-          target={"_blank"}
-          to={annotData.redirectUrl}
-          className="w-[8rem] h-[3rem] border-none outline-none flex justify-center items-center bg-[#525CEB] capitalize text-[18px] tracking-wider font-[350]  rounded-lg text-white "
+          target="_blank"
+          to={annotData?.redirectUrl || "#"}
+          className="w-[8rem] h-[3rem] border-none outline-none flex justify-center items-center bg-[#525CEB] capitalize text-[18px] tracking-wider font-[350] rounded-lg text-white "
         >
           Visit
         </Link>
@@ -50,6 +49,7 @@ const ImageHotSpot = () => {
   const [autoSlide, setAutoSlide] = useState(true);
   const [showAnnotBox, setShowAnnotBox] = useState(false);
   const [annotData, setAnnotData] = useState(null);
+
   const getAllToolTipImages = useCallback(async () => {
     try {
       const res = await axios.get(`${BASE_URL}/api/tooltipimages/all`, {
@@ -93,14 +93,43 @@ const ImageHotSpot = () => {
     );
   };
 
+  const handleAnnotationClick = (annotation) => {
+    if (annotation?.data?.redirectUrl) {
+      setAnnotData({
+        redirectUrl: annotation.data.redirectUrl,
+        image: annotation.data.image,
+      });
+      setShowAnnotBox(true);
+    }
+  };
+
+  const renderAnnotation = () => {
+    if (!imageHotSpots[currentIndex]) return null;
+    const currentAnnotations = imageHotSpots[currentIndex].annotations || [];
+
+    return currentAnnotations.map((annotation, index) => (
+      <div
+        key={index}
+        className="annotation-marker"
+        onClick={() => handleAnnotationClick(annotation)}
+        style={{
+          position: "absolute",
+          fontSize: "30px",
+          width: "20px",
+          height: "25px",
+          top: `${annotation.geometry.y - 3}%`,
+          left: `${annotation.geometry.x - 2}%`,
+        }}
+      >
+        <span className="marker-icon"></span>
+      </div>
+    ));
+  };
+
   return (
     <div className="w-full flex justify-center mt-8 relative">
       {showAnnotBox && (
-        <AnnotBox
-          setShowAnnotBox={setShowAnnotBox}
-          setAnnotData={setAnnotData}
-          annotData={annotData}
-        />
+        <AnnotBox setShowAnnotBox={setShowAnnotBox} annotData={annotData} />
       )}
       <div className="w-[80%] max-w-screen-xl flex flex-col items-center gap-[30px]">
         <div className="w-full text-[35px] font-bold text-left">Tool Tips</div>
@@ -112,26 +141,15 @@ const ImageHotSpot = () => {
               <button className="slider-button prev" onClick={handlePrevious}>
                 <IoIosArrowBack />
               </button>
-              <div className="relative w-max h- flex justify-center items-center wrapper">
+              <div className="relative w-max flex justify-center items-center wrapper">
                 <Annotation
                   src={imageHotSpots[currentIndex].image}
                   alt="Annotatable"
                   annotations={imageHotSpots[currentIndex].annotations}
-                  type="POINT"
+                  type="None"
                   value={imageHotSpots[currentIndex].annotation}
-                  onClick={() => {
-                    const annotation = imageHotSpots[
-                      currentIndex
-                    ].annotations.find((annot) => annot.data?.redirectUrl);
-                    if (annotation) {
-                      setAnnotData({
-                        redirectUrl: annotation.data.redirectUrl,
-                        image: annotation.data.image,
-                      });
-                      setShowAnnotBox(true);
-                    }
-                  }}
                 />
+                {renderAnnotation()}
               </div>
               <button className="slider-button next" onClick={handleNext}>
                 <IoIosArrowForward />

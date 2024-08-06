@@ -15,7 +15,7 @@
     object-position: center;
 }
 
-@media screen and (max-width:500px) {
+@media screen and (max-width:580px) {
     .wrapper img {
         width: 100%;
         height: max-content;
@@ -25,5 +25,12 @@
     .slider-button {
         padding: 0;
         margin: 0;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
+
 }

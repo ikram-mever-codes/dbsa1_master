@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import bg from "../../images/Rectangle 25.png";
 import design from "../../images/Mask group.png";
-import { newProduct } from "../../data";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -25,18 +24,18 @@ const HeroSection = () => {
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % newProduct.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % categorySlides.length);
     }, 6000);
     return () => clearInterval(slideInterval);
-  }, []);
+  }, [categorySlides.length]);
 
   const nextIndex = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % newProduct.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % categorySlides.length);
   };
 
   const prevIndex = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? newProduct.length - 1 : prevIndex - 1
+      prevIndex === 0 ? categorySlides.length - 1 : prevIndex - 1
     );
   };
 
@@ -56,7 +55,7 @@ const HeroSection = () => {
           position = "activeSlide";
         } else if (
           index === currentIndex - 1 ||
-          (currentIndex === 0 && index === newProduct.length - 1)
+          (currentIndex === 0 && index === categorySlides.length - 1)
         ) {
           position = "prevSlide";
         }
@@ -67,7 +66,7 @@ const HeroSection = () => {
             className={`flex w-[80%] h-full gap-5 flex-col justify-center md:rounded-none rounded-lg items-center absolute transition-all duration-700 text-center  ${
               position === "prevSlide" && "translate-x-[-100vw] opacity-0"
             } ${position === "nextSlide" && "translate-x-[100vw] opacity-0"} ${
-              position === "activeSlide" && "translate-x-[0vw]"
+              position === "activeSlide" && "translate-x-[0vw] opacity-100"
             }`}
           >
             <div className="w-full h-full flex justify-center overflow-hidden md:rounded-none rounded-lg absolute left-0 top-0">
@@ -75,7 +74,6 @@ const HeroSection = () => {
                 src={bg}
                 alt="banner"
                 className="w-full h-full"
-                priority="high"
                 loading="eager"
               />
             </div>

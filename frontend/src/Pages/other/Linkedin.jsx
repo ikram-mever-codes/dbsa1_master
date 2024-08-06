@@ -27,7 +27,7 @@ const Linkedin = () => {
   return (
     <div className="w-full flex justify-center mt-[5rem] pt-[3rem] pb-[3rem]">
       <div className="w-[80%] vsm:w-[90%] flex flex-col gap-[3rem]">
-        <div className="text-[30px] font2 font-[600] text-center">
+        <div className="text-[30px] font2 font-[600] text-left">
           Latest Developments
         </div>
         <div
