@@ -49,7 +49,8 @@ const HeroSection = () => {
     <div className="flex w-[100vw] font2 mt-[3rem] bg-transparent min-h-[320px] smd:min-h-[580px] gap-5 justify-center relative overflow-hidden">
       {categorySlides.map((product, index) => {
         let position = "nextSlide";
-        const { image, name, startingRate } = product;
+        const { image, name, startingRate, subheading, link, buttonText } =
+          product;
 
         if (index === currentIndex) {
           position = "activeSlide";
@@ -83,13 +84,13 @@ const HeroSection = () => {
                   {name}
                 </div>
                 <div className="text-3xl font-[500] font2 sm:text-2xl">
-                  From R. {startingRate}
+                  {subheading ? subheading : `From R. ${startingRate}`}
                 </div>
                 <Link
-                  to={`/shop?category=${product._id}`}
+                  to={link ? link : `/shop?category=${product._id}`}
                   className="bg-[#282a3a] text-[16px] flex justify-start items-center gap-[12px] rounded-md px-[32px] py-4 font2 uppercase font-[700]"
                 >
-                  Shop Now
+                  {buttonText ? buttonText : "Shop Now"}{" "}
                   <span>
                     <FaArrowRight />
                   </span>

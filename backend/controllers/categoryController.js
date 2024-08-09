@@ -3,7 +3,8 @@ import Category from "../model/categoryModel.js";
 
 export const createCategory = asyncHandler(async (req, res) => {
   try {
-    const { name, startingPrice, image } = req.fields;
+    const { name, startingRate, image, subheading, buttonText, link } =
+      req.fields;
 
     if (!name) {
       res.status(401);
@@ -18,8 +19,11 @@ export const createCategory = asyncHandler(async (req, res) => {
 
     const category = await Category.create({
       name,
-      startingPrice,
+      startingRate,
       image: image,
+      subheading,
+      buttonText,
+      link,
     });
 
     res.status(200).json(category);
@@ -30,27 +34,32 @@ export const createCategory = asyncHandler(async (req, res) => {
 
 export const updateCategory = asyncHandler(async (req, res) => {
   const id = req.params.id;
-  const { name } = req.fields;
-  if (!name) {
-    res.status(400);
-    throw new Error("Name is Required");
-  }
-  const category = await Category.findById(id);
-  if (!category) {
-    res.status(404);
-    throw new Error("category not exists");
-  }
-  const newCategory = await Category.findByIdAndUpdate(
-    req.params.id,
-    { ...req.fields },
-    { new: true }
-  );
-  if (!newCategory) {
-    res.status(404);
-    throw new Error("category not found");
-  }
+  const { name, image, subheading, buttonText, link, startingRate } = req.body;
+  try {
+    if (!name) {
+      res.status(400);
+      throw new Error("Name is Required");
+    }
+    const category = await Category.findById(id);
+    if (!category) {
+      res.status(404);
+      throw new Error("category not exists");
+    }
 
-  res.status(200).json(newCategory);
+    category.name = name;
+
+    category.image = image || category.image;
+    category.subheading = subheading || category.subheading;
+    category.buttonText = buttonText || category.buttonText;
+    category.link = link || category.link;
+    category.startingRate = startingRate || category.startingRate;
+    await category.save();
+
+    return res.status(200).json({ category });
+  } catch (error) {
+    console.log(error);
+    return res.status(404).json({ message: error.message });
+  }
 });
 
 export const deleteCategory = asyncHandler(async (req, res) => {

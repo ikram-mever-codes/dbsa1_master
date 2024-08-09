@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <div className="w-full flex justify-center mt-12 bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-[80%] sm:max-w-[95%]">
+      <div className="w-full max-w-[85%] sm:max-w-[90%]">
         <div className="text-lg md:text-xl lg:text-3xl font-semibold mb-4 text-gray-800">
           Leading Experts in Low Voltage Distribution Boards
         </div>

@@ -5,7 +5,7 @@ import { useAllProjectQuery } from "../../Redux/Api/projectSlice";
 import Message from "../../Components/Message";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import "./LatestProjects.css"; // Ensure this file exists and is properly configured
+import "./LatestProjects.css";
 
 const LatestProjects = () => {
   const { data: projects, isLoading, error } = useAllProjectQuery();
@@ -23,6 +23,7 @@ const LatestProjects = () => {
     );
   };
 
+  console.log(projects);
   return isLoading ? (
     <div>Loading...</div>
   ) : error ? (
@@ -51,27 +52,39 @@ const LatestProjects = () => {
                 className="project-card"
               >
                 <div className="w-full h-full flex items-center justify-center sm:flex-col gap-[20px]">
-                  <div className="project-info w-[30%] h-full sm:w-full flex juststify-around flex-col items-center">
+                  <div className="project-info w-[40%] h-full sm:w-full flex juststify-around flex-col items-center">
                     <h3 className="text-2xl md:text-2xl lg:text-2xl font-semibold text-center mb-8 text-gray-800">
                       {projects[currentIndex].title}
                     </h3>
-                    <p className="text-sm md:text-base lg:text-lg font-light tracking-wide leading-6 md:leading-8 text-gray-700">
-                      {projects[currentIndex].description}
+                    <p className="text-sm w-full md:text-base lg:text-lg font-light tracking-wide leading-6 md:leading-8 text-gray-700">
+                      {projects[currentIndex].description.substring(0, 500)}...
                     </p>
                   </div>
-                  <LazyLoadImage
+                  <img
                     src={projects[currentIndex].image}
                     alt="Project Image"
-                    effect="blur"
-                    className="rounded-lg"
                     style={{
-                      maxHeight: "400px",
-                      width: "25rem",
-                      height: "max-content",
-                      objectFit: "cover",
+                      // maxHeight: "4s00px",
+                      width: "30rem",
+                      height: "25rem",
+                      objectFit: "contain",
                       objectPosition: "center",
                     }}
+                    effect="blur"
+                    className="rounded-lg"
                   />
+                  {/* <LazyLoadImage
+                  src={projects[currentIndex].image}
+                  alt="Project Image" effect="blur" className="rounded-lg"
+                  style=
+                  {{
+                    maxHeight: "400px",
+                    width: "30rem",
+                    height: "30rem",
+                    objectFit: "contain",
+                    objectPosition: "center",
+                  }}
+                  /> */}
                 </div>
               </Link>
             </div>

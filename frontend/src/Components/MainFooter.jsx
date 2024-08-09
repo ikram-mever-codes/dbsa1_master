@@ -2,7 +2,7 @@ import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
-import { MdOutlineFacebook } from "react-icons/md";
+import { FaTiktok } from "react-icons/fa";
 import { ImLinkedin } from "react-icons/im";
 import { ImFacebook2 } from "react-icons/im";
 import { Link } from "react-router-dom";
@@ -16,10 +16,10 @@ const MainFooter = () => {
         </div>
         <div className="text-[#CFD3D7] px-5 md:px-0 py-2 min-h-[150px] smd:min-h-[100px] gap-4 flex flex-col justify-between">
           <p className="text-[14px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
-            perspiciatis
+            Distribution Boards SA (PTY) Ltd is a manufacturer and supplier of
+            premium quality, Low Voltage electrical equipment.
           </p>
-          <p className="text-[14px]">Copyright DBSA</p>
+          <p className="text-[14px]">&copy; DBSA 2024-2025</p>
         </div>
       </div>
       <div className="flex w-[200px] smd:w-[80%] md:w-[200px] flex-col text-[16px] gap-8">
@@ -95,10 +95,12 @@ const MainFooter = () => {
           <Link to="https://www.linkedin.com/">
             <ImLinkedin />
           </Link>
+          <Link to="#https://www.tiktok.com/@distributionboards?lang=en titktok">
+            {<FaTiktok />}
+          </Link>
         </div>
         <div className="text-[#CFD3D7] px-5 md:px-0 py-2 min-h-[150px] gap-5 flex flex-col justify-between">
-          Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do
-          eiusmod.
+          View Our Social Links
         </div>
       </div>
     </div>

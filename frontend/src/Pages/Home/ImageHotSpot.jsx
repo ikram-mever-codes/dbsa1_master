@@ -33,6 +33,7 @@ const AnnotBox = ({ setShowAnnotBox, annotData }) => {
         )}
         <Link
           target="_blank"
+          rel="noopener noreferrer"
           to={annotData?.redirectUrl || "#"}
           className="w-[8rem] h-[3rem] border-none outline-none flex justify-center items-center bg-[#525CEB] capitalize text-[18px] tracking-wider font-[350] rounded-lg text-white "
         >
@@ -42,13 +43,13 @@ const AnnotBox = ({ setShowAnnotBox, annotData }) => {
     </div>
   );
 };
-
 const ImageHotSpot = () => {
   const [imageHotSpots, setImageHotSpots] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoSlide, setAutoSlide] = useState(true);
   const [showAnnotBox, setShowAnnotBox] = useState(false);
   const [annotData, setAnnotData] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null); // Refactor hover state
 
   const getAllToolTipImages = useCallback(async () => {
     try {
@@ -107,23 +108,37 @@ const ImageHotSpot = () => {
     if (!imageHotSpots[currentIndex]) return null;
     const currentAnnotations = imageHotSpots[currentIndex].annotations || [];
 
-    return currentAnnotations.map((annotation, index) => (
-      <div
-        key={index}
-        className="annotation-marker"
-        onClick={() => handleAnnotationClick(annotation)}
-        style={{
-          position: "absolute",
-          fontSize: "30px",
-          width: "20px",
-          height: "25px",
-          top: `${annotation.geometry.y - 3}%`,
-          left: `${annotation.geometry.x - 2}%`,
-        }}
-      >
-        <span className="marker-icon"></span>
-      </div>
-    ));
+    return currentAnnotations.map((annotation, index) => {
+      return (
+        <div
+          key={annotation._id}
+          className="annotation-marker"
+          onClick={() => handleAnnotationClick(annotation)}
+          style={{
+            position: "absolute",
+            fontSize: "30px",
+            width: "25px",
+            height: "25px",
+            cursor: "pointer",
+            borderRadius: "50px",
+            top: `${annotation.geometry.y - 3}%`,
+            left: `${annotation.geometry.x - 2}%`,
+          }}
+          onMouseEnter={() => setHoveredIndex(index)}
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          <span className="marker-icon"></span>
+          <div
+            id={annotation._id}
+            className={`hover-text cursor-pointer text-[15px] font-semibold absolute z-[10000] bg-white border-[#525CEB] border-solid border w-max px-[10px] py-[5px] ${
+              hoveredIndex === index ? "block" : "hidden"
+            }`}
+          >
+            {annotation.data.text}
+          </div>
+        </div>
+      );
+    });
   };
 
   return (
@@ -147,7 +162,6 @@ const ImageHotSpot = () => {
                   alt="Annotatable"
                   annotations={imageHotSpots[currentIndex].annotations}
                   type="None"
-                  value={imageHotSpots[currentIndex].annotation}
                 />
                 {renderAnnotation()}
               </div>

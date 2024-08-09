@@ -5,7 +5,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Certificates = () => {
   return (
-    <div className="w-full flex gap-6 mt-20  py-[30px]  justify-center md:justify-start  bg-[#F3F3F3] h-[419px]  overflow-scroll flex-row items-center">
+    <div className="w-full  flex gap-[0px] mt-20  py-[50px] px-[40px]  justify-center md:justify-start  bg-[#F3F3F3] h-[419px]  overflow-scroll flex-row items-center">
       {certificates.map((data, index) => {
         return (
           <div

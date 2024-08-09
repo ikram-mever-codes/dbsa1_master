@@ -15,10 +15,10 @@ router
   .route("/")
   .post(authorized, authorizedAdmin, formidable(), createCategory)
   .get(getAllCategory);
-router
-  .route("/:id")
-  .put(authorized, authorizedAdmin, formidable(), updateCategory)
-  .get(authorized, authorizedAdmin, readCategory);
+
+router.put("/:id", updateCategory);
+
+router.route("/:id").get(authorized, authorizedAdmin, readCategory);
 
 router.delete("/:id", deleteCategory);
 export default router;
