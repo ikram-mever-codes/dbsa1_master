@@ -1,4 +1,5 @@
-export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "https://distributionboards.co.za";
+// export const BASE_URL = "http://localhost:5000";
 export const user_url = "/api/users";
 export const category_url = "/api/category";
 export const brand_url = "/api/brands";
