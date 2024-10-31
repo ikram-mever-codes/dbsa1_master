@@ -86,15 +86,7 @@ const CreateCategories = () => {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="flex flex-col w-full gap-3">
-              <label htmlFor="subheading">Subheading</label>
-              <input
-                type="text"
-                className="focus:outline-none px-3 py-2 border-[2px] border-black rounded-lg"
-                value={subheading}
-                onChange={(e) => setSubheading(e.target.value)}
-              />
-            </div>
+
             <div className="flex flex-col w-full gap-3">
               <label htmlFor="rate">Starting Price</label>
               <input
@@ -111,15 +103,6 @@ const CreateCategories = () => {
                 className="focus:outline-none px-3 py-2 border-[2px] border-black rounded-lg"
                 value={link}
                 onChange={(e) => setLink(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col w-full gap-3">
-              <label htmlFor="buttonText">Button Text</label>
-              <input
-                type="text"
-                className="focus:outline-none px-3 py-2 border-[2px] border-black rounded-lg"
-                value={buttonText}
-                onChange={(e) => setButtonText(e.target.value)}
               />
             </div>
           </div>
