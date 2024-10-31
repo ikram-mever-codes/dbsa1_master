@@ -18,6 +18,7 @@ import { MdExpandLess, MdExpandMore } from "react-icons/md";
 
 const ProductDetails = () => {
   const { id } = useParams();
+
   const [image, setImage] = useState(null);
   const [qty, setQty] = useState(1);
   const [descExpanded, setDiscExpanded] = useState(false);

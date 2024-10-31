@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import { FcElectricity } from "react-icons/fc";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { GrTooltip, GrUpdate } from "react-icons/gr";
-import { FaUpload } from "react-icons/fa6";
+import { FaSliders, FaUpload } from "react-icons/fa6";
 
 const SideBar2 = () => {
   return (
@@ -56,8 +56,8 @@ const SideBar2 = () => {
           style={({ isActive }) => ({
             color: isActive ? "#525CEB" : "#757575",
           })}
-          to="categoryList"
           className="flex h-[32px] text-[12px] font-[500] justify-start items-center gap-1 "
+          to="categoryList"
         >
           <span className="text-[18px]">
             <MdOutlineCategory />
@@ -117,7 +117,7 @@ const SideBar2 = () => {
             color: isActive ? "#525CEB" : "#757575",
           })}
           to="scrappeProducts"
-          className="flex justify-start items-center gap-1 "
+          className="flex h-[32px] text-[12px] font-[500] justify-start items-center gap-1 "
         >
           <span className="text-[18px]">
             <CiDatabase />
@@ -129,7 +129,7 @@ const SideBar2 = () => {
             color: isActive ? "#525CEB" : "#757575",
           })}
           to="createToolTip"
-          className="flex justify-start items-center gap-1 "
+          className="flex h-[32px] text-[12px] font-[500] justify-start items-center gap-1 "
         >
           <span className="text-[20px]">
             <GrTooltip />
@@ -141,7 +141,7 @@ const SideBar2 = () => {
             color: isActive ? "#525CEB" : "#757575",
           })}
           to="updateToolTips"
-          className="flex justify-start items-center gap-1 "
+          className="flex h-[32px] text-[12px] font-[500] justify-start items-center gap-1 "
         >
           <span className="text-[20px]">
             <GrUpdate />
@@ -153,7 +153,7 @@ const SideBar2 = () => {
             color: isActive ? "#525CEB" : "#757575",
           })}
           to="uploadDoc"
-          className="flex justify-start items-center gap-1 "
+          className="flex h-[32px] text-[12px] font-[500] justify-start items-center gap-1 "
         >
           <span className="text-[18px]">
             <FaUpload />
@@ -165,7 +165,7 @@ const SideBar2 = () => {
             color: isActive ? "#525CEB" : "#757575",
           })}
           to="updateDocs"
-          className="flex justify-start items-center gap-1 "
+          className="flex h-[32px] text-[12px] font-[500] justify-start items-center gap-1 "
         >
           <span className="text-[20px]">
             <FaUpload />
@@ -183,6 +183,30 @@ const SideBar2 = () => {
             <CiShoppingCart />
           </span>
           Orders
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => ({
+            color: isActive ? "#525CEB" : "#757575",
+          })}
+          to="createSlide"
+          className="flex h-[32px] text-[12px] font-[500] justify-start items-center gap-1 "
+        >
+          <span className="text-[20px]">
+            <FaSliders />
+          </span>
+          Create Slide
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => ({
+            color: isActive ? "#525CEB" : "#757575",
+          })}
+          to="updateSlide"
+          className="flex h-[32px] text-[12px] font-[500] justify-start items-center gap-1 "
+        >
+          <span className="text-[20px]">
+            <FaSliders />
+          </span>
+          Update Slide
         </NavLink>
       </ul>
     </div>

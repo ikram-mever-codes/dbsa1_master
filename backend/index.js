@@ -20,6 +20,7 @@ import orderRoute from "./routes/orderRoute.js";
 import brandRoute from "./routes/brandRoute.js";
 import tooltipRoute from "./routes/tooltipRoute.js";
 import scrappingRoute from "./routes/scrappingRoutes.js";
+import sliderRoutes from "./routes/sliderRoutes.js";
 import documentRoute from "./routes/documentRoutes.js";
 import createToken from "./utils/createToken.js";
 
@@ -112,7 +113,7 @@ app.use("/api/brands", brandRoute);
 app.use("/api/tooltip", tooltipRoute);
 app.use("/api/scrapper", scrappingRoute);
 app.use("/api/document", documentRoute);
-
+app.use("/api/slider", sliderRoutes);
 // Serve static assets
 const __uploads_dirname = path.resolve();
 const __dirname = path.dirname(path.resolve());

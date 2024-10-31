@@ -26,8 +26,8 @@ const SideBar = () => {
   };
 
   return (
-    <div className="absolute flex-col font2 z-[1000] text-[#757575] font-[500] shadow-slate-500 shadow-md p-3 bg-white border-[1px]  rounded-[12px] border-gray-400 text-[16px] w-[172px] left-0 top-[85px] ">
-      <ul className="rounded-md text-start  first:rounded-md last:rounded-md ">
+    <div className="absolute flex-col font2 z-[1000000] text-[#757575] font-[500]  shadow-slate-500 shadow-md p-3 bg-white border-[1px]  rounded-[12px] border-gray-400 text-[16px] w-[172px] left-0 top-[85px] ">
+      <ul className="rounded-md text-start z-[1000000]   first:rounded-md last:rounded-md ">
         {userInfo?.isAdmin && (
           <li className="bg-white h-[32px] hover:bg-[#F6F6F6] font2 text-[12px] font-[500] text-start px-3 rounded-md">
             <NavLink
@@ -72,6 +72,17 @@ const SideBar = () => {
             to="/docs"
           >
             Important Docs
+          </NavLink>
+        </li>
+        <li className="bg-white text-[12px] h-[32px] font-[500]  rounded-md hover:bg-[#F6F6F6] py-1 px-3">
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#525CEB" : "#757575",
+            })}
+            className="w-full h-full flex justify-start items-center"
+            to="/steel-page"
+          >
+            Steel Enclosures
           </NavLink>
         </li>
         <li className="bg-white text-[12px] h-[32px] font-[500]  rounded-md hover:bg-[#F6F6F6] py-1 px-3">

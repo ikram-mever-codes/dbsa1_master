@@ -59,7 +59,7 @@ const ImageHotSpot = () => {
         },
         withCredentials: true,
       });
-      setImageHotSpots(res.data.imageHotspots);
+      setImageHotSpots(res.data.imageHotspots.reverse());
     } catch (error) {
       toast.error(error.message);
     }

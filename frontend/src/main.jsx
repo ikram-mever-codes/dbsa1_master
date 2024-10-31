@@ -10,6 +10,9 @@ import UploadDocument from "./Pages/AdminPanel/UploadDocument";
 import Index from "./Pages/Documents/Index";
 import UpdateDocuments from "./Pages/AdminPanel/UpdateDocuments";
 import UpdateToolTips from "./Pages/AdminPanel/UpdateToolTips";
+import CreateSlider from "./Pages/AdminPanel/CreateSlider.jsx";
+import UpdateSlider from "./Pages/AdminPanel/UpdateSlider.jsx";
+import SteelPage from "./Pages/SteelPage/SteelPage.jsx";
 
 // Lazy load components
 const App = lazy(() => import("./App.jsx"));
@@ -81,6 +84,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="docs" element={<Index />} />
                 <Route path="login" element={<Login />} />
                 <Route path="Register" element={<Register />} />
+                <Route path="steel-page" element={<SteelPage />} />
                 <Route path="forgetPassword" element={<ForgetPassword />} />
                 <Route
                   path="resetPassword/:token"
@@ -119,6 +123,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                   <Route path="brandList" element={<BrandList />} />
                   <Route path="usersList" element={<UsersList />} />
                   <Route path="orderList" element={<OrderList />} />
+                  <Route path="createSlide" element={<CreateSlider />} />
+                  <Route path="updateSlide" element={<UpdateSlider />} />
                   <Route path="updateProduct/:id" element={<ProductList />} />
                   <Route
                     path="update/project/:id"

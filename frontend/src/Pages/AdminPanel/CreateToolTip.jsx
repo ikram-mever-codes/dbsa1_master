@@ -47,23 +47,31 @@ const CreateToolTip = () => {
   );
 
   const uploadImageHandler = async (e) => {
+    toast.loading("Uploading Image...");
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
     try {
       const res = await uploadImage(formData).unwrap();
+      toast.dismiss();
+      toast.success("Image Uploaded Successfully!");
       setImage(res.image);
     } catch (error) {
+      toast.dismiss();
       toast.error("Failed to upload image. Please try again.");
     }
   };
 
   const uploadAnnotationImageHandler = async (e) => {
+    toast.loading("Uploading Annotation Image...");
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
     try {
       const res = await uploadImage(formData).unwrap();
+      toast.dismiss();
+      toast.success("Annotation Image Uploaded Successfully!");
       setAnnotationImage(res.image);
     } catch (error) {
+      toast.dismiss();
       toast.error("Failed to upload image. Please try again.");
     }
   };
@@ -136,7 +144,7 @@ const CreateToolTip = () => {
           </label>
         </div>
       ) : (
-        <div className="wrapper-main rounded-xl relative w-full max-w-3xl overflow-hidden shadow-lg">
+        <div className="wrapper-main rounded-xl relative w-full max-w-3xl overflow-hidden shadow-lg px-[6rem]">
           <Annotation
             src={image}
             alt="Annotatable"
@@ -185,7 +193,7 @@ const CreateToolTip = () => {
                 <img
                   src={annotationImage}
                   alt="Annotation"
-                  className="w-full h-48 object-cover rounded"
+                  className="w-full h-max object-cover rounded"
                 />
                 <button
                   onClick={deleteAnnotationImage}

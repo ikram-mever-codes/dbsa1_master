@@ -11,7 +11,7 @@ import { RxCross2 } from "react-icons/rx";
 import { LiaBarsSolid } from "react-icons/lia";
 import SideBar2 from "../../Components/Sidebar2";
 import { GrTooltip, GrUpdate } from "react-icons/gr";
-import { FaUpload } from "react-icons/fa6";
+import { FaSliders, FaUpload } from "react-icons/fa6";
 
 const AdminSidebar = () => {
   const [openSideBar, setSidebar] = useState(false);
@@ -187,6 +187,30 @@ const AdminSidebar = () => {
               <FaUpload />
             </span>
             Update Documents
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#525CEB" : "#757575",
+            })}
+            to="createSlide"
+            className="flex justify-start items-center gap-1 "
+          >
+            <span className="text-[20px]">
+              <FaSliders />
+            </span>
+            Create Slide
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#525CEB" : "#757575",
+            })}
+            to="updateSlide"
+            className="flex justify-start items-center gap-1 "
+          >
+            <span className="text-[20px]">
+              <FaSliders />
+            </span>
+            Update Slide
           </NavLink>
         </div>
       </div>

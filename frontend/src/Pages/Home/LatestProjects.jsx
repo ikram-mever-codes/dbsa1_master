@@ -3,14 +3,11 @@ import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useAllProjectQuery } from "../../Redux/Api/projectSlice";
 import Message from "../../Components/Message";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import "./LatestProjects.css";
 
 const LatestProjects = () => {
   const { data: projects, isLoading, error } = useAllProjectQuery();
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? projects.length - 1 : prevIndex - 1
@@ -23,7 +20,6 @@ const LatestProjects = () => {
     );
   };
 
-  console.log(projects);
   return isLoading ? (
     <div>Loading...</div>
   ) : error ? (
@@ -46,45 +42,36 @@ const LatestProjects = () => {
         </button>
         <div className="slider-wrapper">
           {projects.length > 0 && (
-            <div className="slide active ">
+            <div className="slide active">
               <Link
-                to={`/project/${projects[currentIndex]._id}`}
+                to={`/project/${
+                  projects[projects.length - 1 - currentIndex]._id
+                }`}
                 className="project-card"
               >
                 <div className="w-full h-full flex items-center justify-center sm:flex-col gap-[20px]">
                   <div className="project-info w-[40%] h-full sm:w-full flex juststify-around flex-col items-center">
                     <h3 className="text-2xl md:text-2xl lg:text-2xl font-semibold text-center mb-8 text-gray-800">
-                      {projects[currentIndex].title}
+                      {projects[projects.length - 1 - currentIndex].title}
                     </h3>
                     <p className="text-sm w-full md:text-base lg:text-lg font-light tracking-wide leading-6 md:leading-8 text-gray-700">
-                      {projects[currentIndex].description.substring(0, 500)}...
+                      {projects[
+                        projects.length - 1 - currentIndex
+                      ].description.substring(0, 500)}
+                      ...
                     </p>
                   </div>
                   <img
-                    src={projects[currentIndex].image}
+                    src={projects[projects.length - 1 - currentIndex].image}
                     alt="Project Image"
                     style={{
-                      // maxHeight: "4s00px",
                       width: "30rem",
                       height: "25rem",
                       objectFit: "contain",
                       objectPosition: "center",
                     }}
-                    effect="blur"
                     className="rounded-lg"
                   />
-                  {/* <LazyLoadImage
-                  src={projects[currentIndex].image}
-                  alt="Project Image" effect="blur" className="rounded-lg"
-                  style=
-                  {{
-                    maxHeight: "400px",
-                    width: "30rem",
-                    height: "30rem",
-                    objectFit: "contain",
-                    objectPosition: "center",
-                  }}
-                  /> */}
                 </div>
               </Link>
             </div>
