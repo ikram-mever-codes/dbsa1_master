@@ -10,14 +10,14 @@ import {
 
 const router = express.Router();
 
-router.post("/", createSlider);
+router.post("/", authorized, authorizedAdmin, createSlider);
 router.route("/allSliders").get(allSliders);
-// router
-//   .route("/:id")
-//   .put(authorized, authorizedAdmin, updateSlider)
-//   .delete(authorized, authorizedAdmin, deleteSlider)
-//   .get(sliderById);
+router
+  .route("/:id")
+  .put(authorized, authorizedAdmin, updateSlider)
+  .delete(authorized, authorizedAdmin, deleteSlider)
+  .get(sliderById);
 
-router.route("/:id").put(updateSlider).delete(deleteSlider).get(sliderById);
+// router.route("/:id").put(updateSlider).delete(deleteSlider).get(sliderById);
 
 export default router;

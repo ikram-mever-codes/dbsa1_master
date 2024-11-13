@@ -18,10 +18,16 @@ router.post(
   uploadDocument
 );
 
-router.get("/all", getAllDocuments);
+router.get("/all", authorized, authorizedAdmin, getAllDocuments);
 
-router.put("/update/:id", uploadMiddleware, updateDocument);
+router.put(
+  "/update/:id",
+  authorized,
+  authorizedAdmin,
+  uploadMiddleware,
+  updateDocument
+);
 
-router.delete("/delete/:id", deleteDocument);
+router.delete("/delete/:id", authorized, authorizedAdmin, deleteDocument);
 
 export default router;

@@ -51,7 +51,15 @@ export const deleteDocument = async (req, res) => {
         message: "Error: Document Not Found",
       });
     }
-    fs.unlinkSync(path.join("documents", path.basename(doc.url)));
+
+    const filePath = path.join("documents", path.basename(doc.url));
+    try {
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    } catch (fsError) {
+      console.error("File not found or couldn't be deleted:", fsError.message);
+    }
 
     await Doc.findByIdAndDelete(id);
 
@@ -60,7 +68,6 @@ export const deleteDocument = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
 export const getAllDocuments = async (req, res) => {
   try {
     const { tag } = req.query;
