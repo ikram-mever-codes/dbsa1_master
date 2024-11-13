@@ -25,7 +25,6 @@ const CreateSlider = () => {
         {
           link,
           button: buttonText,
-          description,
           image,
           text,
         },
@@ -33,6 +32,7 @@ const CreateSlider = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
       toast.dismiss();
@@ -42,10 +42,9 @@ const CreateSlider = () => {
       setText("");
       setButtonText("");
       setLink("");
-      setDescription("");
     } catch (error) {
       toast.dismiss();
-      toast.error(error.response.data.error || "Unexpected Error");
+      toast.error(error.message || "Unexpected Error");
     }
   };
   const uploadImageHandler = async (e) => {

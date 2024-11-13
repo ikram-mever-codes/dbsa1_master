@@ -18,7 +18,12 @@ const UpdateSlider = () => {
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const res = await axios.get(`${BASE_URL}/api/slider/allSliders`);
+        const res = await axios.get(`${BASE_URL}/api/slider/allSliders`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
         setSlides(res.data.slides);
       } catch (error) {
         toast.error("Failed to load slides.");
@@ -48,7 +53,12 @@ const UpdateSlider = () => {
 
   const handleDeleteSlide = async (id) => {
     try {
-      await axios.delete(`${BASE_URL}/api/slider/${id}`);
+      await axios.delete(`${BASE_URL}/api/slider/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
       setSlides(slides.filter((slide) => slide.id !== id));
       toast.success("Slide deleted successfully");
     } catch (error) {
@@ -73,12 +83,21 @@ const UpdateSlider = () => {
 
   const handleSaveSlide = async () => {
     try {
-      await axios.put(`${BASE_URL}/api/slider/${currentSlide}`, {
-        text,
-        image,
-        buttonText,
-        link,
-      });
+      await axios.put(
+        `${BASE_URL}/api/slider/${currentSlide}`,
+        {
+          text,
+          image,
+          buttonText,
+          link,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
       setSlides(
         slides.map((slide) =>
           slide.id === currentSlide

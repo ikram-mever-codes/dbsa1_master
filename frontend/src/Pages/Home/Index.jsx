@@ -15,6 +15,7 @@ import Brands from "./Brands";
 import ImageHotSpot from "./ImageHotSpot";
 import Loader from "../../Components/Loader";
 import LinkedIn from "../other/Linkedin";
+import Faq from "./Faq";
 const LazyHeroSection = React.lazy(() => import("./HeroSection"));
 
 const Home = () => {
@@ -45,13 +46,12 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-full relative styleFont">
+    <div className="w-full relative styleFont h-max">
       <Suspense fallback={<Loader />}>
-        
         <LazyHeroSection />
       </Suspense>
-      <About />
       <LinkedIn />
+      <About />
       <ImageComparison />
       <LatestProjects />
       <PageLinks />
@@ -60,6 +60,7 @@ const Home = () => {
       {/* <Category /> */}
       <Certificates />
       <Brands />
+      <Faq />
     </div>
   );
 };

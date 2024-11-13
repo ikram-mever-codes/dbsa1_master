@@ -116,6 +116,18 @@ const SideBar2 = () => {
           style={({ isActive }) => ({
             color: isActive ? "#525CEB" : "#757575",
           })}
+          to="projects"
+          className="flex justify-start items-center gap-1 "
+        >
+          <span className="text-[18px]">
+            <HiOutlineDocumentText />
+          </span>
+          Update Projects
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => ({
+            color: isActive ? "#525CEB" : "#757575",
+          })}
           to="scrappeProducts"
           className="flex h-[32px] text-[12px] font-[500] justify-start items-center gap-1 "
         >

@@ -17,6 +17,7 @@ const HeroSection = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       });
       setCategories(res.data.slides);
     } catch (error) {
@@ -88,7 +89,7 @@ const HeroSection = () => {
                 </div>
                 <Link
                   to={link ? link : `/shop?category=${product._id}`}
-                  className="bg-[#282a3a] text-[16px] flex justify-center items-center gap-[12px] rounded-md px-[32px] py-4 font2 uppercase font-[700]"
+                  className="bg-[#282a3a] text-[16px] flex justify-center items-center gap-[12px] rounded-md px-[32px] relative left-[250px] py-4 font2 uppercase font-[700]"
                 >
                   {button ? button : "Shop Now"}{" "}
                   <span>
@@ -125,14 +126,14 @@ const HeroSection = () => {
       })}
 
       <button
-        className="absolute right-[90%] border-[2px] z-[0] border-gray-600 rounded-full text-xl p-6 bg-[#f7f4f4] top-1/2 transform -translate-y-1/2 pdusm:right-[1%]"
+        className="absolute right-[91%] border-[2px] z-[0] border-gray-600 rounded-full text-xl p-6 bg-[#f7f4f4] top-1/2 transform -translate-y-1/2 pdusm:right-[2%]"
         onClick={prevIndex}
       >
         <GrPrevious />
       </button>
       <button
         onClick={nextIndex}
-        className="absolute z-[1000] border-[2px] border-gray-600 left-[90%] rounded-full text-xl p-6 bg-[#f7f4f4] top-1/2 transform -translate-y-1/2 pdsm:left-[1%]"
+        className="absolute z-[1000] border-[2px] border-gray-600 left-[91%] rounded-full text-xl p-6 bg-[#f7f4f4] top-1/2 transform -translate-y-1/2 pdsm:left-[2%]"
       >
         <GrNext />
       </button>

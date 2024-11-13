@@ -16,6 +16,7 @@ const Index = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       });
       setDocs(res.data.docs);
     } catch (error) {

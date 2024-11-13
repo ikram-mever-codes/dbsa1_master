@@ -120,6 +120,18 @@ const AdminSidebar = () => {
             style={({ isActive }) => ({
               color: isActive ? "#525CEB" : "#757575",
             })}
+            to="projects"
+            className="flex justify-start items-center gap-1 "
+          >
+            <span className="text-[18px]">
+              <HiOutlineDocumentText />
+            </span>
+            Update Projects
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#525CEB" : "#757575",
+            })}
             to="orderList"
             className="flex justify-start items-center gap-1 "
           >

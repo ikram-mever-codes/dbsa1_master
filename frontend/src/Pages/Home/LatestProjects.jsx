@@ -50,11 +50,11 @@ const LatestProjects = () => {
                 className="project-card"
               >
                 <div className="w-full h-full flex items-center justify-center sm:flex-col gap-[20px]">
-                  <div className="project-info w-[40%] h-full sm:w-full flex juststify-around flex-col items-center">
-                    <h3 className="text-2xl md:text-2xl lg:text-2xl font-semibold text-center mb-8 text-gray-800">
+                  <div className="project-info w-[40%] h-full sm:w-full flex justify-center flex-col items-center">
+                    <h3 className="text-2xl md:text-2xl  text-left lg:text-2xl font-semibold  w-full mb-8 text-gray-800">
                       {projects[projects.length - 1 - currentIndex].title}
                     </h3>
-                    <p className="text-sm w-full md:text-base lg:text-lg font-light tracking-wide leading-6 md:leading-8 text-gray-700">
+                    <p className="text-sm w-full text-left md:text-base lg:text-lg font-light tracking-wide leading-6 md:leading-8 text-gray-700">
                       {projects[
                         projects.length - 1 - currentIndex
                       ].description.substring(0, 500)}

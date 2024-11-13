@@ -13,6 +13,7 @@ import UpdateToolTips from "./Pages/AdminPanel/UpdateToolTips";
 import CreateSlider from "./Pages/AdminPanel/CreateSlider.jsx";
 import UpdateSlider from "./Pages/AdminPanel/UpdateSlider.jsx";
 import SteelPage from "./Pages/SteelPage/SteelPage.jsx";
+import Projects from "./Pages/AdminPanel/Projects.jsx";
 
 // Lazy load components
 const App = lazy(() => import("./App.jsx"));
@@ -126,6 +127,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                   <Route path="createSlide" element={<CreateSlider />} />
                   <Route path="updateSlide" element={<UpdateSlider />} />
                   <Route path="updateProduct/:id" element={<ProductList />} />
+                  <Route path="projects" element={<Projects />} />
                   <Route
                     path="update/project/:id"
                     element={<UpdateProject />}
