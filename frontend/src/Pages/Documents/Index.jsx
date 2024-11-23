@@ -12,12 +12,15 @@ const Index = () => {
   const [tag, setTag] = useState(null);
   const getAllDocs = async () => {
     try {
-      let res = await axios.get(`${BASE_URL}/api/document/all?tag=${tag}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
+      let res = await axios.get(
+        `${BASE_URL}/api/document/all?tag=${tag || ""}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
       setDocs(res.data.docs);
     } catch (error) {
       return toast.error(error.message);

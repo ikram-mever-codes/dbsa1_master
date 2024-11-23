@@ -11,10 +11,6 @@ const router = express.Router();
 
 router.route("/").post(createProject);
 router.route("/allProject").get(allProjects);
-router
-  .route("/:id")
-  .put(authorized, authorizedAdmin, updateProject)
-  .delete(authorized, authorizedAdmin, deleteProject)
-  .get(projectById);
+router.route("/:id").put(updateProject).delete(deleteProject).get(projectById);
 
 export default router;

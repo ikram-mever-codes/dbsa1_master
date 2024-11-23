@@ -16,7 +16,7 @@ const CreateToolTip = () => {
   const [uploadImage] = useUploadProductImageMutation();
   const [viewAnnotationsModal, setViewAnnotationsModal] = useState(false);
   const [annotationImage, setAnnotationImage] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const onChange = useCallback((annotation) => {
     setAnnotation({
       ...annotation,
@@ -47,11 +47,13 @@ const CreateToolTip = () => {
   );
 
   const uploadImageHandler = async (e) => {
+    setLoading(true);
     toast.loading("Uploading Image...");
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
     try {
       const res = await uploadImage(formData).unwrap();
+      setLoading(false);
       toast.dismiss();
       toast.success("Image Uploaded Successfully!");
       setImage(res.image);
@@ -62,11 +64,13 @@ const CreateToolTip = () => {
   };
 
   const uploadAnnotationImageHandler = async (e) => {
+    setLoading(true);
     toast.loading("Uploading Annotation Image...");
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
     try {
       const res = await uploadImage(formData).unwrap();
+      setLoading(false);
       toast.dismiss();
       toast.success("Annotation Image Uploaded Successfully!");
       setAnnotationImage(res.image);
@@ -214,6 +218,7 @@ const CreateToolTip = () => {
         </div>
       )}
       <button
+        disabled={loading}
         className="w-full max-w-xs md:max-w-md bg-blue-500 h-12 py-3 text-lg rounded-lg text-white shadow-md hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-600"
         onClick={handleUpload}
       >

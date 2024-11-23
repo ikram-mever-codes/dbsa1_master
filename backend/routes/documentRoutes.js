@@ -10,24 +10,18 @@ import { authorized, authorizedAdmin } from "../middleware/authorization.js";
 
 const router = express.Router();
 
-router.post(
-  "/upload",
-  authorized,
-  authorizedAdmin,
-  uploadMiddleware,
-  uploadDocument
-);
+router.post("/upload", uploadMiddleware, uploadDocument);
 
-router.get("/all", authorized, authorizedAdmin, getAllDocuments);
+router.get("/all", getAllDocuments);
 
 router.put(
   "/update/:id",
-  authorized,
-  authorizedAdmin,
+  // authorized,
+  // authorizedAdmin,
   uploadMiddleware,
   updateDocument
 );
 
-router.delete("/delete/:id", authorized, authorizedAdmin, deleteDocument);
+router.delete("/delete/:id", deleteDocument);
 
 export default router;

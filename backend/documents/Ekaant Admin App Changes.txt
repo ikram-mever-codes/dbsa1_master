@@ -1,0 +1,12 @@
+1. Link Failed File Upload with alt toast messages (DONE)
+2. Update file Upload Placeholders on file uploading (DONE)
+3. Handle Sign Up Crash on Step 3 (DONE)
+4. Add year in DOB Picker (DONE)
+5. File Upload Size Issue minimum 5mb and show error on exceeding (DONE)
+6. Add Validation for step 5 on Uploading Library Images (DONE)
+7. Change Options field type to select in Step 4 (DONE)
+8. Change State fields type to options in step 4 (DONE)
+9. Solve the problem in manage admin & Library Details & Room Details with in Library for scrolling (DONE)
+10. Enhance the App Config whole page (DONE)
+
+

@@ -38,6 +38,7 @@ app.use(compression()); // enable gzip compression
 
 // CORS configuration
 const corsOptions = {
+  // origin: [process.env.FRONTEND_URL, "http://localhost:5000"],
   origin: [process.env.FRONTEND_URL, "https://www.distributionboards.co.za"],
   credentials: true,
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
